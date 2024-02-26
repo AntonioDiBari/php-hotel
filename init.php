@@ -49,13 +49,14 @@ if ($form_sent) {
     $park = $_GET["park"] ?? "";
     if ($park == "true") {
         $park = true;
+        echo ("Preferenza parcheggio: Si! <br/>");
     } elseif ($park == "false") {
         $park = false;
+        echo ("Preferenza parcheggio: No! <br/>");
     };
-    var_dump($park);
 
     $min_vote = $_GET["min_vote"] ?? "";
-    echo $min_vote;
+    echo ("Voto minimo: " . $min_vote);
 
     foreach ($hotels as $hotel) {
         if (($hotel["vote"] >= $min_vote) && ($hotel["parking"] == $park)) {

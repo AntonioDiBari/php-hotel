@@ -57,9 +57,9 @@ require "./init.php";
           </td>
           <td>
             <?php if ($hotel["parking"]) {
-              echo "<i class='fa-solid fa-check'></i>";
+              echo "<i class='fa-solid fa-check text-success'></i>";
             } else {
-              echo "<i class='fa-solid fa-xmark'></i>";
+              echo "<i class='fa-solid fa-xmark text-danger'></i>";
             } ?>
           </td>
           <td>
