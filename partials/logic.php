@@ -3,25 +3,31 @@
 $form_sent = !empty($_GET);
 $hotels_result = ($form_sent) ? [] : $hotels;
 
+$min_vote = $_GET["min_vote"] ?? false;
+// echo ("Voto minimo: " . $min_vote);
+$park = $_GET["park"] ?? " ";
+
 if ($form_sent) {
 
-    $park = $_GET["park"] ?? "";
     if ($park == "true") {
         $park = true;
-        echo ("Preferenza parcheggio: Si! <br/>");
+        // echo ("Preferenza parcheggio: Si! <br/>");
     } elseif ($park == "false") {
         $park = false;
-        echo ("Preferenza parcheggio: No! <br/>");
+        // echo ("Preferenza parcheggio: No! <br/>");
     }
     ;
 
-    $min_vote = $_GET["min_vote"] ?? "";
-    echo ("Voto minimo: " . $min_vote);
+    // foreach ($hotels as $hotel) {
+    //     if (($hotel["vote"] >= $min_vote) && ($hotel["parking"] == $park)) {
+    //         $hotels_result[] = $hotel;
+    //     }
+    // }
 
-    foreach ($hotels as $hotel) {
-        if (($hotel["vote"] >= $min_vote) && ($hotel["parking"] == $park)) {
-            $hotels_result[] = $hotel;
-        }
-    }
+    $hotels = array_filter(
+        $hotels,
+        fn($hotel) => (
+            ($hotel["vote"] >= $min_vote) && ($hotel["parking"] == $park))
+    );
 }
 ;

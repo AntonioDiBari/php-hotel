@@ -23,19 +23,17 @@ require __DIR__ . "./partials/init.php";
     <div class="col-6">
       <label for="park">Preferenza parcheggio</label>
       <select class="form-select" name="park" id="park">
+        <option selected disabled hidden>
+          <?php $park = ($park == "true") ? "Si" : "No";
+          echo $park; ?>
+        </option>
         <option value="true">Si</option>
         <option value="false">No</option>
       </select>
     </div>
     <div class="col-6">
       <label for="min_vote">Inserisci un voto minimo per te</label>
-      <select class="form-select" name="min_vote" id="min_vote">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </select>
+      <input type="number" value="<?= $min_vote ?>" class="form-control" id="min_vote" min="1" max="5" name="min_vote">
     </div>
     <button class="btn btn-secondary mt-3 col-1">Filtra</button>
   </form>
@@ -50,7 +48,7 @@ require __DIR__ . "./partials/init.php";
       </tr>
     </thead>
     <tbody>
-      <?php foreach ($hotels_result as $hotel): ?>
+      <?php foreach ($hotels as $hotel): ?>
         <tr>
           <td>
             <?= $hotel["name"] ?>
